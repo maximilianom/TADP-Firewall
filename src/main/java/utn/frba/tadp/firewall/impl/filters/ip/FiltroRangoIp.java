@@ -32,7 +32,6 @@ public class FiltroRangoIp implements Filter {
 		String[] values = ip.split("\\.");
 		Long numero = 0L;
 		for (int i = 0; i < values.length; i++) {
-			System.out.println(values[i]);
 			numero += Long.valueOf(values[i])
 					* (int) Math.pow(10, (3 * (values.length - (i + 1))));
 		}

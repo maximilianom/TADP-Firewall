@@ -24,4 +24,8 @@ public class Firewall {
 	public void addRule(Regla rule){
 		this.reglas.add(rule);
 	}
+	
+	public List<Regla> getRules(){
+		return this.reglas;
+	}
 }
