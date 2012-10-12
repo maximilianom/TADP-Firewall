@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Builder {
-	private Class<?> type;
-	private Class<?> declaredType;
+public class Builder<T, D extends T> {
+	private Class<T> type;
+	private Class<D> declaredType;
 	private Map<String, Object> parameters;
 	private Map<String, Class<?>> dependencies;
 
@@ -16,8 +16,14 @@ public class Builder {
 	}
 
 	public void setToApplicationContext() {
+		ApplicationContext.getInstance().setObject(this.declaredType,
+				this.build());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public D build(){
 		try {
-			Object object = type.newInstance();
+			T object = type.newInstance();
 			for (String name : parameters.keySet()) {
 				Field field = type.getDeclaredField(name);
 				field.setAccessible(true);
@@ -32,9 +38,7 @@ public class Builder {
 						ApplicationContext.getInstance().getObject(
 								dependencies.get(dependency)));
 			}
-
-			ApplicationContext.getInstance().setObject(this.declaredType,
-					object);
+			return (D) object;
 		} catch (InstantiationException e) {
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
@@ -44,11 +48,11 @@ public class Builder {
 		}
 	}
 
-	public void setType(Class<?> aClass) {
+	public void setType(Class<T> aClass) {
 		this.type = aClass;
 	}
 
-	public void setDeclaredType(Class<?> declaredType) {
+	public void setDeclaredType(Class<D> declaredType) {
 		this.declaredType = declaredType;
 	}
 
