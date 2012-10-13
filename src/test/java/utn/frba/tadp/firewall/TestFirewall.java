@@ -1,6 +1,6 @@
 package utn.frba.tadp.firewall;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import utn.frba.tadp.firewall.*;
-import utn.frba.tadp.firewall.api.*;
-import utn.frba.tadp.firewall.impl.*;
-import utn.frba.tadp.firewall.impl.actions.InformarBloqueoAction;
-import utn.frba.tadp.firewall.impl.actions.LoggearPaqueteAction;
+import utn.frba.tadp.firewall.api.Action;
+import utn.frba.tadp.firewall.api.Filter;
+import utn.frba.tadp.firewall.impl.Firewall;
 import utn.frba.tadp.firewall.impl.filters.AcceptsAllFilter;
 import utn.frba.tadp.firewall.impl.filters.FiltroCompuesto;
 import utn.frba.tadp.firewall.impl.filters.ip.FiltroIpIndividual;
@@ -22,13 +20,13 @@ import utn.frba.tadp.firewall.impl.filters.ports.FiltroConjuntoDePuertos;
 import utn.frba.tadp.firewall.impl.model.Regla;
 import utn.frba.tadp.firewall.impl.model.exceptions.BloqueaRequestException;
 import utn.frba.tadp.firewall.mock.InformarBloqueoMock;
+import utn.frba.tadp.firewall.utils.Builder;
 
 public class TestFirewall {
 	private Firewall firewall;
 	
 	@Before
 	public void initialize(){
-		this.firewall = new Firewall();		
 	}
 	
 	@Test

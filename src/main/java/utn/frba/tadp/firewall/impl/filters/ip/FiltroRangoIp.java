@@ -1,6 +1,7 @@
 package utn.frba.tadp.firewall.impl.filters.ip;
 
 import utn.frba.tadp.firewall.api.Filter;
+import utn.frba.tadp.firewall.impl.model.RangoIP;
 import utn.frba.tadp.firewall.impl.model.Request;
 
 public class FiltroRangoIp implements Filter {

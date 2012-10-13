@@ -1,4 +1,4 @@
-package utn.frba.tadp.firewall.impl.filters.ip;
+package utn.frba.tadp.firewall.impl.model;
 
 public class RangoIP {
 	private String ipInicio;
@@ -36,7 +36,7 @@ public class RangoIP {
 		Long maximum = ipToLong(this.ipFin);
 		Long current = ipToLong(unaIP);
 		
-		return !(current <= maximum || current >= minimum);
+		return (current <= maximum || current >= minimum);
 	}
 	
 	private Long ipToLong(String ip) {
