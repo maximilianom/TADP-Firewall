@@ -56,7 +56,7 @@ public class TestFirewall {
 		ArrayList<Filter> filtros = new ArrayList<Filter>();
 		filtros.add(new FiltroConjuntoDePuertos(puertosBloqueados));
 		filtros.add(new AcceptsAllFilter());
-		filtros.add(new FiltroRangoIp("127.0.0.1", "127.0.0.0", "0.0.0.0"));
+		filtros.add(new FiltroRangoIp("127.0.0.1", "127.0.0.1", "127.0.0.0", "0.0.0.0"));
 		
 		filtroCompuesto = new FiltroCompuesto(filtros);
 		
