@@ -21,7 +21,9 @@ public class ForwardAction implements Action {
 	public void makeAction(Request request) {
 		if (filter.accepts(request)) {
 			Firewall firewall = ApplicationContext.getInstance().getObject(Firewall.class);
-			firewall.evaluate(ipForward, request.getIpDestino(), puertoForward);
+			Request forwardRequest = new Request(puertoForward, ipForward, request.getIpDestino());
+			request.requestForwarded(forwardRequest);
+			firewall.evaluate(forwardRequest);
 		}
 	}
 
