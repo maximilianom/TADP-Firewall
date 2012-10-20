@@ -11,16 +11,17 @@ public class ForwardAction implements Action {
 	private Filter filter;
 	private String ipForward;
 	private int puertoForward;
+	private Firewall firewall;
 
-	public ForwardAction(Filter filter, String ipForward, int puertoForward) {
+	public ForwardAction(Filter filter, String ipForward, int puertoForward, Firewall firewall) {
 		this.filter = filter;
 		this.ipForward = ipForward;
 		this.puertoForward = puertoForward;
+		this.firewall = firewall;
 	}
 
 	public void makeAction(Request request) {
 		if (filter.accepts(request)) {
-			Firewall firewall = ApplicationContext.getInstance().getObject(Firewall.class);
 			Request forwardRequest = new Request(puertoForward, ipForward, request.getIpDestino());
 			request.requestForwarded(forwardRequest);
 			firewall.evaluate(forwardRequest);
