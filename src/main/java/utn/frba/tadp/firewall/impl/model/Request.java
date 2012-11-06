@@ -1,12 +1,12 @@
 package utn.frba.tadp.firewall.impl.model;
 
-import utn.frba.tadp.firewall.api.ResponseListener;
+import utn.frba.tadp.firewall.api.RequestListener;
 
 public class Request {
 	private Integer port;
 	private String ipOrigen;
 	private String ipDestino;
-	private ResponseListener responseListener = null;
+	private RequestListener responseListener;
 
 	public Request(Integer port, String ipOrigen, String ipDestino) {
 		this.port = port;
@@ -14,11 +14,6 @@ public class Request {
 		this.ipDestino = ipDestino;
 	}
 	
-	public void enviarMensajeHaciaOrigen(String mensaje) {
-		// dummy implementation
-		System.out.println(mensaje);
-	}
-
 	public Integer getPort() {
 		return port;
 	}
@@ -43,17 +38,15 @@ public class Request {
 		this.ipDestino = ipDestino;
 	}
 	
-	public void setResponseListener(ResponseListener l){
+	public void setResponseListener(RequestListener l){
 		this.responseListener = l;
 	}
 	
 	public void requestBlocked(){
-		if(this.hasResponseListener())
 			this.responseListener.requestBlocked(this);
 	}
 	
 	public void requestForwarded(Request forwardRequest){
-		if(this.hasResponseListener())
 			this.responseListener.requestForwarded(this, forwardRequest);
 	}
 	

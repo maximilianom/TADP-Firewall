@@ -1,9 +1,9 @@
 package utn.frba.tadp.firewall.mock;
 
-import utn.frba.tadp.firewall.api.ResponseListener;
+import utn.frba.tadp.firewall.api.RequestListener;
 import utn.frba.tadp.firewall.impl.model.Request;
 
-public class ResponseListenerMock implements ResponseListener {
+public class RequestListenerMock implements RequestListener {
 	private Request blockedRequest = null;
 	private Request forwardedRequest = null;
 	

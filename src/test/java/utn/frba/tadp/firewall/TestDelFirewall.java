@@ -15,17 +15,17 @@ import utn.frba.tadp.firewall.impl.actions.InformarBloqueoAction;
 import utn.frba.tadp.firewall.impl.filters.ip.FiltroIpIndividual;
 import utn.frba.tadp.firewall.impl.model.Regla;
 import utn.frba.tadp.firewall.impl.model.Request;
-import utn.frba.tadp.firewall.mock.ResponseListenerMock;
+import utn.frba.tadp.firewall.mock.RequestListenerMock;
 
 public class TestDelFirewall {
 	private Firewall firewall;
-	private ResponseListenerMock listenerMock;
+	private RequestListenerMock listenerMock;
 	
 	@Before
 	public void setUp() {
 		this.firewall = new Firewall();
-		this.listenerMock = new ResponseListenerMock();
-		this.firewall.setDefaultResponseListener(this.listenerMock);
+		this.listenerMock = new RequestListenerMock();
+		this.firewall.setDefaultRequestListener(this.listenerMock);
 	}
 	
 	@Test

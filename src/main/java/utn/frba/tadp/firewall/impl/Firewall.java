@@ -3,13 +3,13 @@ package utn.frba.tadp.firewall.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import utn.frba.tadp.firewall.api.ResponseListener;
+import utn.frba.tadp.firewall.api.RequestListener;
 import utn.frba.tadp.firewall.impl.model.Regla;
 import utn.frba.tadp.firewall.impl.model.Request;
 
 public class Firewall {
 	private List<Regla> reglas;
-	private ResponseListener defaultListener = null;
+	private RequestListener defaultListener = null;
 	
 	public Firewall(){
 		this.reglas = new ArrayList<Regla>();
@@ -35,7 +35,7 @@ public class Firewall {
 		return this.reglas;
 	}
 	
-	public void setDefaultResponseListener(ResponseListener l){
+	public void setDefaultRequestListener(RequestListener l){
 		this.defaultListener = l;
 	}
 
